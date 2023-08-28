@@ -7,6 +7,9 @@ import multer from 'multer'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import path from 'path'
+import User from './models/User.js'
+import Post from './models/Post.js'
+import { users, posts } from './data/index.js'
 import { fileURLToPath } from 'url'
 import { register } from './controllers/auth.js'
 import authRoutes from './routes/auth.js'
@@ -61,6 +64,10 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Running Port ${PORT}`))
+
+    /*ADD DATA ONE TIME */
+    // User.insertMany(users)
+    // Post.insertMany(posts)
   })
   .catch((err) => {
     console.log(err)
